@@ -20,7 +20,7 @@ background: ${props => props.theme['gray-800']};
 position: fixed;
 top: 50%;
 left: 50%;
-transform: translate (-50% -50%);
+transform: translate (-50%, -50%);
 
 form{
     margin-top: 2rem;
@@ -31,8 +31,8 @@ form{
     input {
     border-radius: 6px;
     border: 0;
-    background: ${prosps => prosps.theme['gray-900']};
-    color: ${propos => propos.theme['gray-300']};
+    background: ${props => props.theme['gray-900']};
+    color: ${props => props.theme['gray-300']};
     padding: 1rem;
 
     &::placeholder {
@@ -40,10 +40,10 @@ form{
     }
     }
 
-    button[type='submit'] {
-    height: 58rem;
+    button[type="submit"] {
+    height: 58px;
     border: 0;
-    background: ${props => props.theme['gray-500']};
+    background: ${props => props.theme['green-500']};
     color: ${props => props.theme.white};
     font-weight: bold;
     padding: 0 1.25rem;
@@ -54,9 +54,8 @@ form{
     &:hover {
         background: ${props => props.theme['gray-700']};
         transition: background-color 0.2s;
-    
     }
-  }
+ }
 }
 `;
 
@@ -66,7 +65,7 @@ background: transparent;
 border: 0;
 top: 1.5rem;
 right: 1.5rem;
-font-size: 0;
+line-height: 0;
 cursor: pointer;
 color: ${props => props.theme['gray-500']};
 `;
