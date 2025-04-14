@@ -1,35 +1,13 @@
-import { useEffect, useState } from "react";
+import { useContext } from "react";
 import Header from "../../components/Header";
 import { Summary } from "../../components/Summary";
 import { SearchForm } from "../components/SearchForm";
 import { PriceHighlight, TransactionsContainer, TransactionsTable } from "./styles";
+import { TransactionsContext } from "../../components/contexts/TransactionsContext.";
 
 
-
-interface Transaction {
-    id: number;
-    description: string;
-    type: 'income' | 'outcome';
-    price: number;
-    category: string;
-    createdAt: string;
-
-}
 export function Transactions() {
-    const [transaction, setTransaction] = useState<Transaction[]>([]);
-
-    async function loadTransactions() {
-        const Response= await fetch('http://localhost:3333/transactions')
-        const data = await Response.json();
-
-        setTransaction(data);
-
-    }
-
-    useEffect(() => {
-        loadTransactions()
-    }, []);
-
+    const { transactions } = useContext( TransactionsContext )
     return (
         <div>
             <Header/>
@@ -38,11 +16,11 @@ export function Transactions() {
             <TransactionsContainer>
                 <SearchForm />
                 <TransactionsTable>
-                  <tbody>
-                    {transaction.map(transaction => {
+                <tbody>
+                    {transactions.map(transaction => {
                         return (
                             <tr key={transaction.id}>
-                              <td width="50%">{transaction.description}</td>
+                            <td width="50%">{transaction.description}</td>
                         <td>
                             <PriceHighlight variant = {transaction.type}>
                                 {transaction.price}</PriceHighlight>
@@ -50,11 +28,10 @@ export function Transactions() {
                         <td>{transaction.category}</td>
                         <td>{transaction.createdAt}</td>
                     </tr>
-                    
+
                         )
                     })}
-                    
-                  </tbody>
+                </tbody>
                 </TransactionsTable>
             </TransactionsContainer>
         </div>
